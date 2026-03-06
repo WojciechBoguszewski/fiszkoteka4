@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import '../App.css';
 
 export default function SetView({ set, onBack }) {
   const [activeMode, setActiveMode] = useState('flashcards'); // flashcards, learn, test, match
-  const cards = set.cards || [];
+  const cards = useMemo(() => set.cards || [], [set.cards]);
 
   // ------------------------------------------
   // TRYB 1: FISZKI (Flashcards)
