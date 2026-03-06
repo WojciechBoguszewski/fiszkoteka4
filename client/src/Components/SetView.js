@@ -5,9 +5,7 @@ export default function SetView({ set, onBack }) {
   const [activeMode, setActiveMode] = useState('flashcards'); // flashcards, learn, test, match
   const cards = useMemo(() => set.cards || [], [set.cards]);
 
-  // ------------------------------------------
-  // TRYB 1: FISZKI (Flashcards)
-  // ------------------------------------------
+
   const [fcIndex, setFcIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [knownCards, setKnownCards] = useState([]);
@@ -28,9 +26,7 @@ export default function SetView({ set, onBack }) {
     setIsFlipped(false);
   }
 
-  // ------------------------------------------
-  // TRYB 2: UCZ SIĘ (Quiz ABC)
-  // ------------------------------------------
+  
   const [learnIndex, setLearnIndex] = useState(0);
   const [learnScore, setLearnScore] = useState(0);
   const [learnOptions, setLearnOptions] = useState([]);
@@ -58,9 +54,7 @@ export default function SetView({ set, onBack }) {
     }, 1200);
   }
 
-  // ------------------------------------------
-  // TRYB 3: TEST (Pisanie)
-  // ------------------------------------------
+
   const [testIndex, setTestIndex] = useState(0);
   const [testScore, setTestScore] = useState(0);
   const [testInput, setTestInput] = useState('');
@@ -87,14 +81,11 @@ export default function SetView({ set, onBack }) {
     }, 1500);
   }
 
-  // ------------------------------------------
-  // TRYB 4: DOPASOWANIA (Drag & Drop)
-  // ------------------------------------------
+
   const [dragItems, setDragItems] = useState([]);   // Lewa kolumna (słowa)
   const [dropTargets, setDropTargets] = useState([]); // Prawa kolumna (definicje)
   const [matches, setMatches] = useState({}); // id słowa -> id definicji (tylko poprawne)
   
-  // Inicjalizacja gry Drag & Drop
   useEffect(() => {
     if (activeMode === 'match') {
       // Bierzemy max 6 par
@@ -151,9 +142,7 @@ export default function SetView({ set, onBack }) {
   // Sprawdzamy czy wszystkie dopasowane
   const allMatched = dropTargets.length > 0 && Object.keys(matches).length === dropTargets.length;
 
-  // ------------------------------------------
-  // RENDEROWANIE
-  // ------------------------------------------
+ 
   if (cards.length === 0) {
     return (
       <div className="app-root set-view-root">
